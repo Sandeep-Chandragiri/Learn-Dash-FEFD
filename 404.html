@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Learning Dashboard Redirecting...</title>
+    <script type="text/javascript">
+      /**
+       * GITHUB PAGES 404 REDIRECT FIX
+       * 
+       * When a user refreshes the page or types a URL directly on GitHub Pages,
+       * it returns a 404 error because it's a Single Page Application (SPA).
+       * 
+       * This file intercepts that 404, saves the original URL to sessionStorage,
+       * and redirects the browser back to the main index.html file.
+       * The React app in App.jsx then reads this value to restore the route.
+       */
+      
+      // 1. Capture the full path that caused the 404
+      const originalPath = window.location.href;
+      
+      // 2. Save it in sessionStorage for the main app to retrieve
+      sessionStorage.setItem("gh_pages_redirect", originalPath);
+      
+      // 3. Force a redirect to the base repository path
+      // This will load the main index.html file
+      window.location.replace('/Learn-Dash-FEFD/');
+    </script>
+  </head>
+  <body>
+    <!-- Fallback if JS is disabled or slow -->
+    <div style="font-family: sans-serif; text-align: center; padding-top: 50px;">
+      <h1>Redirecting to Dashboard...</h1>
+      <p>If you are not redirected automatically, please <a href="/Learn-Dash-FEFD/">click here</a>.</p>
+    </div>
+  </body>
+</html>
