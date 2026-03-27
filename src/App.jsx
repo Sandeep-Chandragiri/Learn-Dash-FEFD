@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AppProvider } from "./context/AppContext";
 import Navigation from "./components/Navigation/Navigation";
@@ -14,8 +15,19 @@ import MyCourses from "./pages/MyCourses";
 import Profile from "./pages/Profile";
 
 export default function App() {
+  // --- GITHUB PAGES 404 REDIRECT FIX ---
+  // If the user refreshed the page on a sub-route, 404.html will save the original path
+  // to sessionStorage and redirect to index.html. We restore that path here.
+  useEffect(() => {
+    const redirect = sessionStorage.getItem("gh_pages_redirect");
+    if (redirect) {
+      sessionStorage.removeItem("gh_pages_redirect");
+      window.history.replaceState(null, null, redirect);
+    }
+  }, []);
+
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="/Learn-Dash-FEFD">
       <AppProvider>
         <Navigation />
         <Routes>
