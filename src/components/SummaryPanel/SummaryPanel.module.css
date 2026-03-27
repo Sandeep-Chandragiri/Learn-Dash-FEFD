@@ -1,0 +1,102 @@
+/* SummaryPanel.module.css */
+.panel {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-xl);
+    padding: var(--space-8);
+    margin-bottom: var(--space-8);
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: var(--space-8);
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.panel::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -10%;
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, var(--color-primary-dim) 0%, transparent 70%);
+    pointer-events: none;
+}
+
+.circleSection {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.statsSection {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+}
+
+.sectionTitle {
+    font-size: var(--text-2xl);
+    font-weight: 700;
+    background: linear-gradient(135deg, var(--color-text) 0%, var(--color-primary-light) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: var(--space-1);
+}
+
+.subtitle {
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+}
+
+.statCards {
+    display: flex;
+    gap: var(--space-4);
+    flex-wrap: wrap;
+}
+
+.statCard {
+    background: var(--color-surface-2);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: var(--space-4) var(--space-5);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+    min-width: 120px;
+}
+
+.statCard .value {
+    font-size: var(--text-2xl);
+    font-weight: 700;
+    color: var(--color-text);
+    line-height: 1;
+}
+
+.statCard .label {
+    font-size: var(--text-xs);
+    color: var(--color-text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-weight: 500;
+}
+
+.overallBar {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+}
+
+@media (max-width: 640px) {
+    .panel {
+        grid-template-columns: 1fr;
+        justify-items: center;
+        text-align: center;
+    }
+
+    .statCards {
+        justify-content: center;
+    }
+}

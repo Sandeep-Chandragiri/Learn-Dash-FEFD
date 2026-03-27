@@ -1,0 +1,369 @@
+/* LoginPage.module.css */
+
+/* ── Page wrapper & Reactive Background ─────────────────────── */
+.page {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--space-6);
+    position: relative;
+    overflow: hidden;
+    background: var(--color-bg);
+    transition: background-color var(--transition-base);
+}
+
+.page::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    background: radial-gradient(circle at var(--x, 50%) var(--y, 50%),
+            rgba(139, 92, 246, 0.1),
+            transparent 40%);
+    transition: background 0.1s ease;
+}
+
+/* ── Card ───────────────────────────────────────────────────── */
+.card {
+    position: relative;
+    z-index: 1;
+    width: 90%;
+    margin: 0 auto;
+    max-width: 420px;
+    background: var(--color-surface);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid var(--color-border);
+    border-radius: 20px;
+    padding: var(--space-8);
+    box-shadow: var(--shadow-lg);
+    animation: fadeInSlideUp 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+:global(.dark) .card {
+    background: rgba(26, 29, 39, 0.7); /* Slightly translucent for glass effect in dark mode */
+}
+
+@keyframes fadeInSlideUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ── Brand ──────────────────────────────────────────────────── */
+.brand {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    margin-bottom: var(--space-6);
+    justify-content: center;
+}
+
+.brandIcon {
+    font-size: 1.75rem;
+}
+
+.brandName {
+    font-size: var(--text-xl);
+    font-weight: 700;
+    color: var(--color-text);
+}
+
+/* ── Heading ────────────────────────────────────────────────── */
+.title {
+    font-size: var(--text-2xl);
+    font-weight: 700;
+    text-align: center;
+    color: var(--color-text);
+    outline: none;
+    margin-bottom: var(--space-1);
+}
+
+.subtitle {
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+    text-align: center;
+    margin-bottom: var(--space-6);
+}
+
+/* ── Error banner ───────────────────────────────────────────── */
+.errorBanner {
+    background: rgba(255, 92, 92, 0.1);
+    border: 1px solid var(--color-danger);
+    border-radius: var(--radius-md);
+    color: var(--color-danger);
+    font-size: var(--text-sm);
+    padding: var(--space-3) var(--space-4);
+    margin-bottom: var(--space-4);
+    text-align: center;
+    animation: shake 0.35s ease;
+}
+
+.successBanner {
+    background: var(--color-accent-dim);
+    border: 1px solid var(--color-accent);
+    border-radius: var(--radius-md);
+    color: var(--color-accent);
+    font-size: var(--text-sm);
+    padding: var(--space-3) var(--space-4);
+    margin-bottom: var(--space-4);
+    text-align: center;
+    animation: shake 0.35s ease;
+}
+
+@keyframes shake {
+
+    0%,
+    100% {
+        transform: translateX(0);
+    }
+
+    20% {
+        transform: translateX(-6px);
+    }
+
+    40% {
+        transform: translateX(6px);
+    }
+
+    60% {
+        transform: translateX(-4px);
+    }
+
+    80% {
+        transform: translateX(4px);
+    }
+}
+
+/* ── Form ───────────────────────────────────────────────────── */
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-5);
+}
+
+.field {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+}
+
+.labelRow {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.label {
+    font-size: var(--text-sm);
+    font-weight: 600;
+    color: var(--color-text-muted);
+    letter-spacing: 0.03em;
+}
+
+/* ── Input wrapper ──────────────────────────────────────────── */
+.inputWrapper {
+    display: flex;
+    align-items: center;
+    background: var(--color-surface-2);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    transition: all 0.3s ease;
+    overflow: hidden;
+}
+
+.inputWrapper:focus-within {
+    border-color: var(--color-primary-light);
+    box-shadow: 0 0 0 2px var(--color-primary-dim);
+}
+
+.inputWrapper.inputError {
+    border-color: var(--color-danger);
+    box-shadow: 0 0 0 2px rgba(255, 92, 92, 0.1);
+}
+
+.inputWrapper.inputValid {
+    border-color: var(--color-accent);
+}
+
+.inputIcon {
+    padding: 0 var(--space-3) 0 var(--space-4);
+    font-size: var(--text-base);
+    flex-shrink: 0;
+    user-select: none;
+    color: var(--color-text-dim);
+}
+
+.input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    color: var(--color-text);
+    font-family: var(--font-sans);
+    font-size: var(--text-sm);
+    padding: var(--space-3) var(--space-3) var(--space-3) 0;
+    outline: none;
+}
+
+.input::placeholder {
+    color: var(--color-text-dim);
+    opacity: 0.6;
+}
+
+.eyeBtn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: var(--text-base);
+    padding: 0 var(--space-3);
+    color: var(--color-text-dim);
+    transition: color 0.3s ease;
+    line-height: 1;
+    flex-shrink: 0;
+}
+
+.eyeBtn:hover {
+    color: var(--color-text);
+}
+
+.fieldError {
+    font-size: var(--text-xs);
+    color: var(--color-danger);
+    margin-top: -var(--space-1);
+}
+
+/* ── Forgot link ────────────────────────────────────────────── */
+.forgotLink {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: var(--text-xs);
+    color: var(--color-primary-light);
+    font-family: var(--font-sans);
+    transition: color 0.3s ease;
+    padding: 0;
+}
+
+.forgotLink:hover {
+    color: var(--color-primary);
+}
+
+/* ── Buttons ───────────────────────────── */
+.submitBtn,
+.socialBtn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-2);
+    width: 100%;
+    background: var(--color-surface-2);
+    border: 1px solid var(--color-border);
+    color: var(--color-text);
+    border-radius: var(--radius-md);
+    font-size: var(--text-base);
+    font-weight: 600;
+    font-family: var(--font-sans);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.submitBtn {
+    margin-top: var(--space-2);
+    padding: var(--space-4);
+    letter-spacing: 0.03em;
+    background: var(--color-primary);
+    color: #fff;
+    border: none;
+}
+
+.socialBtn {
+    padding: var(--space-3);
+    font-size: var(--text-sm);
+    font-weight: 500;
+}
+
+.submitBtn:hover:not(:disabled) {
+    transform: scale(1.02);
+    opacity: 0.9;
+    box-shadow: var(--shadow-glow);
+}
+
+.socialBtn:hover {
+    transform: scale(1.02);
+    background: var(--color-surface);
+    border-color: var(--color-primary-light);
+}
+
+.submitBtn:active:not(:disabled),
+.socialBtn:active {
+    transform: scale(0.98);
+}
+
+.submitBtn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* ── Divider ────────────────────────────────────────────────── */
+.divider {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    margin: var(--space-6) 0 var(--space-4);
+    color: var(--color-text-dim);
+    font-size: var(--text-sm);
+}
+
+.divider::before,
+.divider::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: var(--color-border);
+}
+
+/* ── Social buttons Container ───────────────────────────────── */
+.socialRow {
+    display: flex;
+    flex-direction: row;
+    gap: var(--space-3);
+    margin-bottom: var(--space-6);
+}
+
+/* ── Sign-up prompt ─────────────────────────────────────────── */
+.signupPrompt {
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+    text-align: center;
+}
+
+.signupLink {
+    color: var(--color-primary-light);
+    font-weight: 600;
+    text-decoration: none;
+    transition: opacity 0.3s ease;
+}
+
+.signupLink:hover {
+    text-decoration: underline;
+    opacity: 0.8;
+}
+
+/* ── Responsive ─────────────────────────────────────────────── */
+@media (max-width: 480px) {
+    .card {
+        padding: var(--space-8) var(--space-5);
+    }
+
+    .socialRow {
+        flex-direction: column;
+    }
+}

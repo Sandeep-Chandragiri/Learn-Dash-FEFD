@@ -1,0 +1,168 @@
+/* CourseDashboard.module.css */
+
+/* ── Header section ─────────────────────────────────────────── */
+.header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: var(--space-6);
+    margin-bottom: var(--space-8);
+    flex-wrap: wrap;
+}
+
+.subtitle {
+    font-size: var(--text-base);
+    color: var(--color-text-muted);
+    margin-top: var(--space-2);
+    max-width: 520px;
+}
+
+.statsBadges {
+    display: flex;
+    gap: var(--space-3);
+    flex-wrap: wrap;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+.statBadge {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-full);
+    color: var(--color-text-muted);
+    font-size: var(--text-sm);
+    font-weight: 500;
+    padding: var(--space-2) var(--space-4);
+    white-space: nowrap;
+}
+
+/* ── Course Grid ─────────────────────────────────────────────── */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-6);
+}
+
+@media (max-width: 1024px) {
+    .grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 640px) {
+    .grid {
+        grid-template-columns: 1fr;
+        gap: var(--space-4);
+    }
+
+    .header {
+        flex-direction: column;
+        margin-bottom: var(--space-6);
+    }
+}
+
+/* ── Empty State ─────────────────────────────────────────────── */
+.empty {
+    text-align: center;
+    padding: var(--space-16) var(--space-8);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-3);
+}
+
+.emptyIcon {
+    font-size: 3.5rem;
+    filter: grayscale(0.4);
+    margin-bottom: var(--space-2);
+}
+
+.emptyTitle {
+    font-size: var(--text-xl);
+    font-weight: 600;
+    color: var(--color-text);
+}
+
+.emptyText {
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+}
+
+.emptyReset {
+    background: var(--color-primary);
+    color: #fff;
+    border: none;
+    border-radius: var(--radius-full);
+    padding: var(--space-3) var(--space-6);
+    font-size: var(--text-sm);
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: var(--space-2);
+    transition: opacity var(--transition-fast), transform var(--transition-fast);
+}
+
+.emptyReset:hover {
+    opacity: 0.88;
+    transform: scale(1.03);
+}
+
+/* ── Toast ──────────────────────────────────────────────────── */
+@keyframes slideUp {
+    from {
+        transform: translateY(100%);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.toast {
+    position: fixed;
+    bottom: var(--space-6);
+    right: var(--space-6);
+    background: var(--color-surface);
+    border: 1px solid var(--color-accent);
+    border-radius: var(--radius-lg);
+    padding: var(--space-4) var(--space-5);
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+    box-shadow: var(--shadow-lg), 0 0 20px rgba(0, 212, 170, 0.2);
+    animation: slideUp 0.32s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    z-index: 1000;
+    max-width: 300px;
+}
+
+.toastIcon {
+    font-size: 1.75rem;
+    flex-shrink: 0;
+}
+
+.toastTitle {
+    font-size: var(--text-sm);
+    font-weight: 700;
+    color: var(--color-accent);
+}
+
+.toastSub {
+    font-size: var(--text-xs);
+    color: var(--color-text-muted);
+    margin-top: 2px;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+@media (max-width: 480px) {
+    .toast {
+        bottom: var(--space-4);
+        right: var(--space-4);
+        left: var(--space-4);
+        max-width: unset;
+    }
+}
